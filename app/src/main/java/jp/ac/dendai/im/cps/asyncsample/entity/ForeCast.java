@@ -1,9 +1,9 @@
 package jp.ac.dendai.im.cps.asyncsample.entity;
 
 public class ForeCast {
-    private String dateLabel;
-    private String telop;
-    private String date;
+    private String dateLabel = "";
+    private String telop = "";
+    private String date = "";
 
     public String getDateLabel() {
         return dateLabel;

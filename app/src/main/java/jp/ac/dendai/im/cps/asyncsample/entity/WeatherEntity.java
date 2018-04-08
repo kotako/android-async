@@ -1,12 +1,12 @@
 package jp.ac.dendai.im.cps.asyncsample.entity;
 
+import java.util.Collections;
 import java.util.List;
 
 public class WeatherEntity {
-    private String title;
-    private String publicTime;
-    private List<ForeCast> forecasts;
-    private Location location;
+    private String title = "";
+    private String publicTime = "";
+    private List<ForeCast> forecasts = Collections.emptyList();
 
     public String getTitle() {
         return title;
@@ -30,13 +30,5 @@ public class WeatherEntity {
 
     public void setForecasts(List<ForeCast> forecasts) {
         this.forecasts = forecasts;
-    }
-
-    public Location getLocation() {
-        return location;
-    }
-
-    public void setLocation(Location location) {
-        this.location = location;
     }
 }
