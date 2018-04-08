@@ -41,8 +41,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View view) {
         try {
-            FetchWeatherWithAsyncTask fetchWeatherTask = new FetchWeatherWithAsyncTask();
-            WeatherEntity weather = fetchWeatherTask.execute(CITY_ID).get();
+            textTitle.setText("取得中です");
+            WeatherEntity weather = new FetchWeatherWithAsyncTask().execute(CITY_ID).get();
 
             if (weather == null) {
                 textTitle.setText("取得に失敗しました");
@@ -53,7 +53,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             textTitle.setText(weather.getTitle());
             textDate.setText(weather.getForecasts().get(0).getDateLabel());
             textForecast.setText(weather.getForecasts().get(0).getTelop());
-        } catch (InterruptedException|ExecutionException e) {
+        } catch (InterruptedException | ExecutionException e) {
+            textTitle.setText("取得に失敗しました");
             e.printStackTrace();
         }
     }
