@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="jp.ac.dendai.im.cps.asyncsample">
 
-    <!--アプリケーションからインターネットを仕様するためのパーミッション-->
+    <!--アプリケーションからインターネットを使用するためのパーミッション-->
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
