@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">AsyncSample</string>
+    <string name="fetch_forecast">天気を取得</string>
+</resources>
