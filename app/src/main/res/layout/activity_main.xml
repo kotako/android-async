@@ -7,14 +7,14 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/textTitle"
+        android:id="@+id/textDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@id/textDate"
+        android:layout_above="@id/textTitle"
         android:layout_centerHorizontal="true" />
 
     <TextView
-        android:id="@+id/textDate"
+        android:id="@+id/textTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@id/textForecast"
