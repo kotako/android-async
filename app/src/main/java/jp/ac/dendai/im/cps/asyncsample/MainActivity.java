@@ -4,8 +4,8 @@ import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 
@@ -33,7 +33,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TextView textTitle;
     private TextView textDate;
     private TextView textForecast;
-    private Button button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,34 +42,31 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         textTitle = findViewById(R.id.textTitle);
         textDate = findViewById(R.id.textDate);
         textForecast = findViewById(R.id.textForecast);
-        button = findViewById(R.id.button);
 
-        button.setOnClickListener(this);
+        findViewById(R.id.button).setOnClickListener(this);
     }
 
     @Override
     public void onClick(View view) {
         try {
-            // 天気情報を取得する
+//          天気を取得して表示する
             WeatherEntity weather = new FetchWeatherWithAsyncTask().execute(CITY_ID).get();
-            if (weather.getForecasts().isEmpty()) throw new IllegalStateException();
 
-            // 取得した天気情報をTextViewにセット
+            if (weather.getForecasts().isEmpty()) {
+                Toast.makeText(this, "取得に失敗しました", Toast.LENGTH_SHORT).show();
+                return;
+            }
             textTitle.setText(weather.getTitle());
             textDate.setText(weather.getForecasts().get(0).getDateLabel());
             textForecast.setText(weather.getForecasts().get(0).getTelop());
-        } catch (InterruptedException | ExecutionException | IllegalStateException e) {
+        } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
-            textTitle.setText("取得に失敗しました");
-            textDate.setText("");
-            textForecast.setText("");
         }
     }
 
 //  AsyncTaskクラスでは、doInBackground()内の処理が別のスレッドで実行されます
 
     private static class FetchWeatherWithAsyncTask extends AsyncTask<Integer, Void, WeatherEntity> {
-
         @Override
         protected WeatherEntity doInBackground(Integer... integers) {
             WeatherEntity result = new WeatherEntity();
